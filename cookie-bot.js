@@ -89,6 +89,11 @@ bot.on("message", function(message) { // when a message is sent, check if it was
         message.reply("Suggestion succesfully sent!")
     };
 
+    if (command == "test") {
+        if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
+        message.channel.send("Test succesful :thumbsup:");
+    };
+
     if (command == "say") { // creates command *say
         if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!"); // if the meber isn't bot-admin, returns error
         var sayMessage = message.content.substring(4); // removes the prefix and the command from the var sayMessage
