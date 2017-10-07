@@ -50,6 +50,7 @@ bot.on("message", function(message) { // when a message is sent, check if it was
         var embedhelpadmin = new Discord.RichEmbed() // sets a embed box to the var embedhelpadmin
             .setTitle("**List of Admin Commands**\n") // sets the title to List of Admin Commands
             .addField(" - say", "Makes the bot say whatever you want (Correct usage: *say [message])") // sets a field to explain the command *say
+            .addField(" - test", "Tests if the bot is working (Correct usage: *test)")
             .addField(" - purge", "Deletes up to 99 messages (Correct usage: *purge [amount])") // sets a field to explain the command *purge
             .addField(" - mute", "Mutes a desired member with a reason (Coorect usage: *mute @username [reason])") // sets a field to explain the command *mute
             .addField(" - unmute", "Unmutes a muted player (Correct usage: *unmute @username)") // sets a field to explain the command *unmute
