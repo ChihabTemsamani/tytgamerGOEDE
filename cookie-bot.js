@@ -30,6 +30,8 @@ bot.on("message", function(message) { // when a message is sent, check if it was
 
     if (!message.content.startsWith(PREFIX)) return; // if the message doesn't contain PREFIX (*), then ignore
 
+    if (!message.guild) return;
+    
     var args = message.content.substring(PREFIX.length).split(" "); // creates a array called args, and removes the PREFIX (*) from that array
     var command = args[0].toLowerCase(); // sets the command to lowercase (making it incase sensitive)
     var mutedrole = message.guild.roles.find("name", "muted"); // defines the variable mutedrole to find the muted role (not neccessary)
