@@ -167,7 +167,6 @@ bot.on("message", function(message) { // when a message is sent, check if it was
     if (command == "unban") {
         if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
         var unbannedmember = message.mentions.members.first();
-        if (!unbannedmember) return message.reply("Please mention a valid user of this server!");
         message.guild.unban(unbannedmember)
             .catch(error => message.reply(`Sorry ${message.author} I couldn't unban because of: ${error}`));
         message.reply(`${unbannedmember.user} has been unbanned by ${message.author}`);
