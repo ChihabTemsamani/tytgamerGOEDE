@@ -152,7 +152,7 @@ bot.on("message", function(message) { // when a message is sent, check if it was
 
     if (command == "ban") {
         if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
-        var bannedmember = message.mentions.members.first();
+        var bannedmember = message.guild
         if (!bannedmember) return message.reply("Please mention a valid user of this server!");
         if (!bannedmember.bannable) return message.reply("I cannot ban this member!");
         var banreasondelete = 9 + bannedmember.user.id.length;
@@ -166,7 +166,7 @@ bot.on("message", function(message) { // when a message is sent, check if it was
 
     if (command == "unban") {
         if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
-        var unbannedmember = args[1];
+        var unbannedmember = message.mentions.members.first().id
         message.guild.unban(unbannedmember)
             .catch(error => message.reply(`Sorry ${message.author} I couldn't unban because of: ${error}`));
         message.reply(`${unbannedmember.user} has been unbanned by ${message.author}`);
