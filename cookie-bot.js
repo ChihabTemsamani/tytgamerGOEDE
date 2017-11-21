@@ -13,7 +13,7 @@ var eightball = [ // this creates an Array, a list with all the possible answerr
     "up to you!",
 ];
 
-var welcomechannel = member.guild.channels.first;
+var welcomechannel = guild.channels.first;
 
 var bot = new Discord.Client(); // sets the module Discord.Client() to the var "bot"
 
