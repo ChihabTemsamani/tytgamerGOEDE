@@ -13,6 +13,8 @@ var eightball = [ // this creates an Array, a list with all the possible answerr
     "up to you!",
 ];
 
+var welcomechannel = member.guild.channels.first;
+
 var bot = new Discord.Client(); // sets the module Discord.Client() to the var "bot"
 
 bot.on("ready", function() { // when the bot starts up, set its game to Use *help and tell the console "Booted up!"
@@ -21,7 +23,7 @@ bot.on("ready", function() { // when the bot starts up, set its game to Use *hel
 });
 
 bot.on("guildMemberAdd", function(member) { // when a player joins, welcomes him and sets his role to Member
-    member.guild.channels.find("name", "welcome").send("Welcome " + member.toString() + " to Cookie Nation! Please read the rules in " + member.guild.channels.find("name", "rules")); // welcome the user (change the message to whatever you want)
+    welcomechannel.send("Welcome " + member.toString() + " to Cookie Nation! Please read the rules in " + member.guild.channels.find("name", "rules")); // welcome the user (change the message to whatever you want)
     member.addRole(member.guild.roles.find("name", "Member")); // gives the user the member role (change the Member to any role on your server)
 });
 
@@ -58,7 +60,8 @@ bot.on("message", function(message) { // when a message is sent, check if it was
             .addField(" - unmute", "Unmutes a muted player (Correct usage: *unmute @username)") // sets a field to explain the command *unmute
             .addField(" - kick", "Kicks a desired member with a reason (Correct usage: *kick @username [reason])") // sets a field to explain the command *kick
             .addField(" - ban", "Bns a member from the guild :smirk: (Correct usage: *ban @username [reason])") // sets a field to explain the command *ban
-            .addField(" - unban", "Unbans a banned user :smile: (Correct usage: *unban @username)") // sets a field to explain the command *unban
+            .addField(" - unban", ":warning: DOES NOT WORK :warning: Unbans a banned user :smile: (Correct usage: *unban @username)") // sets a field to explain the command *unban
+            .addField(" - changewelcomechannel", "Use this command to change the channel all welcome messages are sent to the channel this command was entered in (Correct usage: *changewelcomechannel)")
             .setColor(0xFF0000) // sets the color of the embed box to red
             .setFooter("Ooo, an admin!"); // sets the footer of the embed box to "Ooo, an admin!"
         message.channel.send(embedhelpmember); // sends the embed box "embedhelpmember" to the chat
@@ -166,12 +169,16 @@ bot.on("message", function(message) { // when a message is sent, check if it was
         message.reply(`${bannedmember.user} has been banned by ${message.author} because: ${banreason}`);
     };
 
-    if (command == "unban") {
-        if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
-        var unbannedmember = message.mentions.members.first().id
-        message.guild.unban(unbannedmember)
-            .catch(error => message.reply(`Sorry ${message.author} I couldn't unban because of: ${error}`));
-        message.reply(`${unbannedmember.user} has been unbanned by ${message.author}`);
+    // if (command == "unban") {
+    //     if (!message.member.roles.some(r=>["bot-admin"].includes(r.name)) ) return message.reply("Sorry, you do not have the permission to do this!");
+    //     var unbannedmember = message.mentions.members.first().id
+    //     message.guild.unban(unbannedmember)
+    //         .catch(error => message.reply(`Sorry ${message.author} I couldn't unban because of: ${error}`));
+    //     message.reply(`${unbannedmember.user} has been unbanned by ${message.author}`);
+    // };
+
+    if (command == "changewelcomechannel") {
+        welcomechannel = message.channel;
     };
 
 });
