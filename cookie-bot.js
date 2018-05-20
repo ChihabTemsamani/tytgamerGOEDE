@@ -1,6 +1,6 @@
 const Discord = require("discord.js"); // this imports discord.js
 
-const PREFIX = "*"; // this sets the bot prefix, change it to whatever you want
+const PREFIX = "!"; // this sets the bot prefix, change it to whatever you want
 
 var eightball = [ // this creates an Array, a list with all the possible answerrs to the 8ball command (see below for 8ball command)
     "yes!",
@@ -22,8 +22,8 @@ bot.on("ready", function() { // when the bot starts up, set its game to Use *hel
     console.log("Booted up!"); // messages the console Booted up! (change the Booted up to whatever you want)
 });
 
-bot.on("guildMemberAdd", function(member) { // when a player joins, welcomes him and sets his role to Member
-    welcomechannel.send("Welcome " + member.toString() + " to Cookie Nation! Please read the rules in " + member.guild.channels.find("name", "rules")); // welcome the user (change the message to whatever you want)
+bot.on("guildMemberAdd", function(leden) { // when a player joins, welcomes him and sets his role to Member
+    welcomechannel.send("Welcome " + member.toString() + " bij de eiren!; // welcome the user (change the message to whatever you want)
     member.addRole(member.guild.roles.find("name", "Member")); // gives the user the member role (change the Member to any role on your server)
 });
 
